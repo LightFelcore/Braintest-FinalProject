@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodel="clr-namespace:xamarinformsproject.ViewModel" x:DataType="viewmodel:LoginPageViewModel"
+             x:Class="xamarinformsproject.LoginPage"
+             NavigationPage.HasNavigationBar="False"
+             Background="#495867">
+    <ContentPage.Content>
+        <StackLayout  Style="{StaticResource LRPageSL}">
+            <Label HorizontalOptions="Center" Margin="0,0,0,50" FontSize="35" TextColor="White" Text="Sign In"/>
+            <Image Source="brain.png" WidthRequest="160"/>
+            <StackLayout Margin="0,35,0,0">
+                <StackLayout>
+                    <Entry Text="{Binding UsernameInput}" Style="{StaticResource LRPageInput}" Placeholder="Enter username"/>
+                    <Entry Text="{Binding PasswordInput}" IsPassword="True" Style="{StaticResource LRPageInput}" Placeholder="Enter password"/>
+                </StackLayout>
+                <Button Command="{Binding LoginCommand}" Style="{StaticResource ButtonStyle}" Text="Login"></Button>
+                <Label Text="Register now!" Style="{StaticResource LRPageNavigation}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ToRegisterPageCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

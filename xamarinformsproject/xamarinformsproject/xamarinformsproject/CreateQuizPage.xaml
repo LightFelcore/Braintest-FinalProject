@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:xamarinformsproject.ViewModel" xmlns:model="clr-namespace:xamarinformsproject.Model" x:DataType="viewmodel:CreateQuizPageViewModel"
+             x:Class="xamarinformsproject.CreateQuizPage"
+             NavigationPage.HasNavigationBar="False"
+             Background="#495867">
+    <StackLayout>
+            <FlexLayout  Style="{StaticResource MainPageHeader}">
+                <Image Source="brain.png" WidthRequest="55"/>
+                <Button x:Name="PreviewQuizData" Command="{Binding PreviewQuizCommand}" Style="{StaticResource ButtonStyle}" Text="Preview Your Quiz"></Button>
+            </FlexLayout>
+            <FlexLayout Style="{StaticResource CreateQuizFL}">
+            <StackLayout>
+                <Label x:Name="NameL" Style="{StaticResource LRPageTitle}" Text="Choose your Quiz Name" />
+                <Label x:Name="QAL" IsVisible="False" Style="{StaticResource LRPageTitle}" Text="Add Question/Answers" />
+                <StackLayout x:Name="NameSL">
+                    <Entry x:Name="NameE" Text="{Binding QuizName}" Style="{StaticResource LRPageInput}" Placeholder="Enter quiz name"/>
+                </StackLayout>
+                <StackLayout IsVisible="False" x:Name="QASL">
+                    <StackLayout Margin="0,0,0,10">
+                        <Label Style="{StaticResource InstructionLabel}" Text="Add a quiz question"/>
+                        <Entry Text="{Binding QuizQuestion}" Style="{StaticResource LRPageInput}" Placeholder="Question"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,0,0,10">
+                        <FlexLayout Style="{StaticResource FlexIt}">
+                            <Label Style="{StaticResource InstructionLabel}" Text="Select your correct answer"/>
+                            <Button Style="{StaticResource AddQuestionToQuiz}" Command="{Binding AddQuestionCommand}"  Text="Add Question"/>
+                        </FlexLayout>
+                        <ListView ItemTapped="AnswerListView_ItemTapped" x:Name="AnswerListView" SeparatorColor="Transparent" Margin="-20,0" HeightRequest="{Binding ListViewHeight}" ItemsSource="{Binding AnswerCollection}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell x:DataType="model:Answer">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <RadioButton Content="{Binding Id}" CheckedChanged="OnRadioCheckedChanged" GroupName="Answers" IsChecked="{Binding IsRadioChecked}" HorizontalOptions="Center"  VerticalOptions="FillAndExpand"/>
+                                            <Entry Grid.Column="1" HorizontalOptions="FillAndExpand" Text="{Binding QuizAnswer}" Style="{StaticResource AnswerInput}" Placeholder="{Binding AnswerPlaceholder}"/>
+
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <Button x:Name="NextStepCreateQuiz" WidthRequest="200" Command="{Binding ToNextStepCommand}" Clicked="ToNextStepCreatingQuiz" Style="{StaticResource ButtonStyle}" Text="Next Step!"></Button>
+                <Button x:Name="AddQuestionToQuiz" IsVisible="False" WidthRequest="200" Command="{Binding AddItemToQuizCommand}" Style="{StaticResource ButtonStyle}" Text="Add item to quiz"></Button>
+            </StackLayout>
+        </FlexLayout>
+        </StackLayout>
+</ContentPage>

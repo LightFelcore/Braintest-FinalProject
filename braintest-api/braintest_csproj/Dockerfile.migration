@@ -1,0 +1,9 @@
+# Compiling project to container
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build_env
+WORKDIR /app
+COPY ./webapi.csproj .
+RUN dotnet restore
+COPY . .
+
+# Install dotnet-ef
+RUN dotnet tool install --global dotnet-ef

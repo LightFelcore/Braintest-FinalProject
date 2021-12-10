@@ -1,0 +1,17 @@
+# Compiling project to container
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build_env
+WORKDIR /app
+COPY ./webapi.csproj .
+RUN dotnet restore
+COPY . .
+RUN dotnet publish -c Release -o out
+
+# Create runtime docker image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+
+# Expose port outside of container
+EXPOSE 80
+
+COPY --from=build_env /app/out .
+ENTRYPOINT ["dotnet", "webapi.dll"]

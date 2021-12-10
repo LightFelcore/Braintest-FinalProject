@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             
+             xmlns:viewmodel="clr-namespace:xamarinformsproject.ViewModel" xmlns:model="clr-namespace:xamarinformsproject.Model"
+             x:Class="xamarinformsproject.ResultQuizPage"
+             NavigationPage.HasNavigationBar="False"
+             Background="#495867">
+
+    <StackLayout>
+        <FlexLayout Style="{StaticResource MainPageHeader}">
+            <Image Source="brain.png" WidthRequest="55"/>
+            <Button Command="{Binding StartNewQuizCommand}" Style="{StaticResource ButtonStyle}" Text="Start a new Quiz"></Button>
+        </FlexLayout>
+        <FlexLayout Style="{StaticResource TakeQuizFL}" Padding="25,0">
+
+            <Label HorizontalTextAlignment="Center" Margin="0,20" Text="Quiz Results" Style="{StaticResource LRPageTitle}" TextDecorations="Underline"/>
+
+            <Label Style="{StaticResource SubTitle}" Text="Quiz Details"/>
+            <Label Style="{StaticResource SubItem}" Text="{Binding ElapsedTime, StringFormat='Quiz Time: {0}'}"/>
+            <Label Style="{StaticResource SubItem}" Text="{Binding CurrentQuiz.Name, StringFormat='Quiz Name: {0}'}"/>
+            <Label Style="{StaticResource SubItem}" Text="{Binding QuizScore, StringFormat='Quiz Score: {0}%'}" TextColor="{Binding QuizScoreColor}"/>
+
+            <Grid HeightRequest="350">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition  />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="180"/>
+                </Grid.ColumnDefinitions>
+
+                <Label HorizontalTextAlignment="Center" Style="{StaticResource SubTitle}" Text="Answer"/>
+                <Label HorizontalTextAlignment="Center" Grid.Column="1" Style="{StaticResource SubTitle}" Text="Correct"/>
+
+
+                <CollectionView  Grid.ColumnSpan="2"  Grid.Row="1" ItemsSource="{Binding ResultCollection}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="180"/>
+                                    <ColumnDefinition Width="180"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Item 1 = UserAnswer -->
+                                <Label  HorizontalTextAlignment="Center" 
+                                        Style="{StaticResource SubItem}" 
+                                        Text="{Binding Item1 }" />
+
+                                <!-- Item 2 = CorrectAnswer -->
+                                <Label Grid.Column="1"
+                                       HorizontalTextAlignment="Center" 
+                                       Style="{StaticResource SubItem}" 
+                                       Text="{Binding Item2}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+
+
+        </FlexLayout>
+    </StackLayout>
+
+</ContentPage>

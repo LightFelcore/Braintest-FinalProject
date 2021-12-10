@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="xamarinformsproject.App">
+    
+
+    <Application.Resources>
+        
+        <ResourceDictionary>
+            <Style x:Key="CustomLine" TargetType="Line">
+                <Setter Property="X1" Value="10"/>
+                <Setter Property="X2" Value="0"/>
+                <Setter Property="Y1" Value="0"/>
+                <Setter Property="Y2" Value="120"/>
+                <Setter Property="Stroke" Value="Black"/>
+            </Style>
+            <Style x:Key="MainPageHeader" TargetType="FlexLayout">
+                <Setter Property="BackgroundColor" Value="#495867"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="JustifyContent" Value="SpaceBetween"/>
+            </Style>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="WidthRequest" Value="180" />
+                <Setter Property="TextColor" Value="#495867"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="BackgroundColor" Value="#f7f7ff"/>
+            </Style>
+            <Style x:Key="MainPageTitleStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="TextColor" Value="#f7f7ff" />
+                <Setter Property="FontSize" Value="25" />
+            </Style>
+            <Style x:Key="MainPageQuizItemSL" TargetType="StackLayout">
+                <Setter Property="Padding" Value="20,25" />
+            </Style>
+            <Style x:Key="MainPageQuizItemFL" TargetType="FlexLayout">
+                <Setter Property="Padding" Value="20,25" />
+            </Style>
+            <Style x:Key="MainPageQuizItemLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="17" />
+            </Style>
+            <Style x:Key="LRPageTitle" TargetType="Label">
+                <Setter Property="Margin" Value="0,0,0,20"/>
+                <Setter Property="FontSize" Value="32"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            </Style>
+            <Style x:Key="LRPageSL" TargetType="StackLayout">
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            <Style x:Key="LRPageInput" TargetType="Entry">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="PlaceholderColor" Value="LightGray"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Margin" Value="0,5"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+            <Style x:Key="LRPageNavigation" TargetType="Label">
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            
+            <!-- Create Quiz Page -->
+            <Style x:Key="CreateQuizFL" TargetType="FlexLayout">
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="Margin" Value="20,20,20,50"/>
+                <Setter Property="Direction" Value="Column"/>
+                <Setter Property="AlignItems" Value="Center"/>
+                <Setter Property="JustifyContent" Value="SpaceBetween"/>
+            </Style>
+
+            <Style x:Key="FlexIt" TargetType="FlexLayout">
+                <Setter Property="JustifyContent" Value="SpaceBetween"/>
+                <Setter Property="AlignItems" Value="Center"/>
+            </Style>
+
+            <Style x:Key="InstructionLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+
+            <Style x:Key="AddQuestionToQuiz" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#f7f7ff"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="TextColor" Value="#495867"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="110"/>
+            </Style>
+            <Style x:Key="AnswerInput" TargetType="Entry">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="PlaceholderColor" Value="LightGray"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+            
+            <!--Take Quiz Page -->
+            <Style x:Key="TakeQuizFL" TargetType="FlexLayout">
+                <Setter Property="Direction" Value="Column"/>
+                <Setter Property="AlignItems" Value="Center"/>
+            </Style>
+            <Style x:Key="AnswerButton" TargetType="Button">
+                <Setter Property="Margin" Value="0,10"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+            
+            <!-- Result Quiz Page -->
+            <Style x:Key="SubTitle" TargetType="Label">
+                <Setter Property="Margin" Value="0,20,0,5"/>
+                <Setter Property="FontSize" Value="23"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextDecorations" Value="Underline"/>
+            </Style>
+            <Style x:Key="SubItem" TargetType="Label">
+                <Setter Property="Margin" Value="0,5"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="LightGray"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

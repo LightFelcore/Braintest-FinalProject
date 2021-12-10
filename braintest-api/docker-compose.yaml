@@ -1,0 +1,30 @@
+version: '2'
+services:
+  ## API Container
+  braintest-api:
+    build: 
+      context: ./braintest_csproj/
+      dockerfile: Dockerfile.api
+    container_name: braintest-api
+    ports:
+      - 8000:80
+
+  ## MySql Container
+  braintest-db:
+    image: mysql
+    container_name: braintest-db
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_USER: braintest_user
+      MYSQL_PASSWORD: braintest_pwd
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: Braintest
+    
+
+  braintest-migration:
+    build: 
+      context: ./braintest_csproj/
+      dockerfile: Dockerfile.migration
+    container_name: braintest-migration
+    tty: true

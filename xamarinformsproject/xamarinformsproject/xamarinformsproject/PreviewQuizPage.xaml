@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:xamarinformsproject.ViewModel" 
+             xmlns:model="clr-namespace:xamarinformsproject.Model"
+             xmlns:converter="clr-namespace:xamarinformsproject.Converter"
+             x:Class="xamarinformsproject.PreviewQuizPage"
+             NavigationPage.HasNavigationBar="False"
+             Background="#495867">
+
+    <ContentPage.Resources>
+        <converter:IndexToColorConverter 
+            x:Key="IndexToColorConverterGrid"                        
+            OddColor="#f7f7ff"
+            EvenColor="#577399"
+            />
+
+        <converter:IndexToColorConverter 
+            x:Key="IndexToColorConverterText"
+            OddColor="Black"
+            EvenColor="#f7f7ff"
+            />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout x:DataType="local:PreviewQuizPageViewModel">
+            <FlexLayout Style="{StaticResource MainPageHeader}">
+                <Image Source="brain.png" WidthRequest="55"/>
+                <Button Command="{Binding ToCreateQuizPage}" Style="{StaticResource ButtonStyle}" Text="Add more items"></Button>
+            </FlexLayout>
+            <Label Text="{Binding QuizObj.Name}" Style="{StaticResource LRPageTitle}" Margin="0,20"/>
+            <RefreshView Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView x:Name="ItemsListView" ItemsSource="{Binding QuizObj.QuizItems}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Style="{StaticResource MainPageQuizItemSL}"  
+                                         x:DataType="model:QuizItem"
+                                         BackgroundColor="{Binding ., Converter={StaticResource IndexToColorConverterGrid}, ConverterParameter={x:Reference ItemsListView}}">
+
+                                <FlexLayout >
+                                    <StackLayout WidthRequest="240">
+                                        
+                                        <Label Text="Question" TextDecorations="Underline" TextColor="{Binding ., Converter={StaticResource IndexToColorConverterText}, ConverterParameter={x:Reference ItemsListView}}"/>
+                                        
+                                        <Label Style="{StaticResource MainPageQuizItemLabel}"
+                                            Text="{Binding Question}"
+                                            TextColor="{Binding ., Converter={StaticResource IndexToColorConverterText}, ConverterParameter={x:Reference ItemsListView}}">
+                                        </Label>
+                                        
+                                    </StackLayout>
+
+                                    <StackLayout>
+                                        
+                                        <Label Text="Correct Answer" TextDecorations="Underline" 
+                                               TextColor="{Binding ., Converter={StaticResource IndexToColorConverterText}, ConverterParameter={x:Reference ItemsListView}}"/>
+                                        
+                                        <Label Style="{StaticResource MainPageQuizItemLabel}"
+                                       Text="{Binding Answer}"
+                                       TextColor="{Binding ., Converter={StaticResource IndexToColorConverterText}, ConverterParameter={x:Reference ItemsListView}}">
+                                        </Label>
+                                        
+                                    </StackLayout>
+                                </FlexLayout>
+                                <Label TextColor="{Binding ., Converter={StaticResource IndexToColorConverterText}, ConverterParameter={x:Reference ItemsListView}}" 
+                                       Text="{Binding AllAnswersStr, StringFormat='Answers: {0}'}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+            <Button WidthRequest="200" Command="{Binding FinalizeQuizCommand}" Style="{StaticResource ButtonStyle}" Text="Finalize My Quiz"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
