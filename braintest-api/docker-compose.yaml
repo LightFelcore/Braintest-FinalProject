@@ -8,6 +8,8 @@ services:
     container_name: braintest-api
     ports:
       - 8000:80
+    networks:
+      - braintest_net
 
   ## MySql Container
   braintest-db:
@@ -20,7 +22,10 @@ services:
       MYSQL_PASSWORD: braintest_pwd
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: Braintest
-    
+    volumes:
+      - mysqlvolume:/var/lib/mysql
+    networks:
+      - braintest_net
 
   braintest-migration:
     build: 
@@ -28,3 +33,11 @@ services:
       dockerfile: Dockerfile.migration
     container_name: braintest-migration
     tty: true
+    networks:
+      - braintest_net
+
+networks: 
+  braintest_net:
+
+volumes:
+  mysqlvolume: 
